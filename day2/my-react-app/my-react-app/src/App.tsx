@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+ import { useContext, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -34,6 +34,51 @@ function Card({ children}) {
   );
 }
 
+function Counter(){
+  const [count, setCount] = useState(0);
+
+  return(
+    <div>
+      <p>Compteur : {count}</p>
+      <button onClick={() => setCount(count +1)}>
+        ADD
+      </button>
+      <button onClick={() => setCount(count -1)}>
+       SUP 
+      </button>
+      <button onClick ={() => setCount(0)}>
+        RESET
+      </button>
+    </div>
+  )
+}
+
+function Text(){
+  const[text, setText] = useState('');
+  
+  function handleClear(event: MouseEvent<HTMLButtonElement, MouseEvent>): void {
+    throw new Error('Function not implemented.')
+  }
+
+  return (
+    <div>
+      <h2>Controlled Component Demo</h2>
+      <input 
+      type="text"
+      value={text}
+      onChange={(e) => setText(e.target.value)}
+      placeholder =" tapez quelque chose..."
+      />
+      <div>
+        <strong>Nombre de caractères</strong> {text.length}
+      </div>
+      <button onClick={handleClear}>
+        sup
+      </button>
+    </div>
+  )
+}
+
 function App() {
   const [value, setValue] =useState("ok")
   let count = 0
@@ -42,8 +87,9 @@ function App() {
     <>
       <div>
           <Main />
-          <Card> hello</Card>
-          <Card/>  
+          <Card> hello</Card> 
+          <Counter/>
+          <Text/>
         <Button onClick={() => alert("ok")}/>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
